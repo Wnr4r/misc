@@ -15,6 +15,18 @@ case $ops in
 		sudo add-apt-repository --yes --update ppa:ansible/ansible
 		sudo apt install ansible
 		;;
+	"centos")
+		sudo yum install epel-release
+		sudo yum install ansible
+		;;
+	"fedora")
+		sudo dnf install ansible
+		;;
+	"debian")
+		sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
+		sudo apt update
+		sudo apt install ansible
+		;;
 	*)
 		echo "The OS:$ops specified isnt part of the list"
 esac
