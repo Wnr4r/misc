@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -en "Please guess the magic number: "
+echo -en "Please guess the magic number: " #-en tells echo not to add linebreak
 read X
 echo $X | grep "[^0-9]" > /dev/null 2>&1 # grep [^0-9] finds only those lines which don't consist only of numbers
 if [ "$?" -eq "0" ]; then
