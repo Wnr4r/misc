@@ -1,0 +1,8 @@
+#!/bin/bash
+sudo -E env "PATH=$PATH" "$@"
+
+#work around to make mvn work with sudo command
+# -E tells sudo to preserve the environment.
+# env "PATH=$PATH" is expanded outside the sudo call, making the external PATH available inside the sudo too (this is required in addition to the -E as the PATH usually receives special treatment in addition to the treatment the entire environment receives).
+# "$@" passes the arguments our script receives to the sudo line.
+# Save this in a file (can be called mysudo) in a directory in the PATH (u can do export path and choose a dir), give it +x permissions, et voilà. e.g /usr/bin
