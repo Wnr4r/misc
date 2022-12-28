@@ -3,10 +3,11 @@
 
 
 #Change these values and keep in safe place
-db_root_password=PassWord4-root
-db_username=wordpress_user
-db_user_password=PassWord4-user
-db_name=wordpress_db
+db_root_password=rootpass
+db_username=whoami
+db_user_password=passpass
+db_name=wp_coded
+
 
 # install LAMP Server
 yum update -y
