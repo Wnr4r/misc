@@ -1,0 +1,32 @@
+def myVar = 'initial value'
+
+
+pipeline {
+    agent any
+
+    environment {
+        ENV_VAR = "this is for the environment"
+    }
+    stages {
+        stage('Echo') {
+            steps {
+                echo "my var content is ${myVar}"
+                echo "my var content is ${ENV_VAR}"
+                sh 'echo "this is to echo via sh"'
+                //sh 'echo "this is to echo via sh with var content: "${myVar}""'     ----this approach wont work cos sh cmds are quoted with just '
+                sh """ echo 'this is to echo via sh with var content: "${myVar}"' """  //this works
+                //sh ''' echo 'this is to echo via sh with var content: "${myVar}"' '''  //this approach wont work cos it's quoted with '''
+                sh """ echo "this is to echo via sh with var content: "${myVar}"" """  //this works
+            }
+        }
+        stage('write echo to file') {
+            steps {
+                sh """
+                echo "my var content is "${myVar}"" > file.txt &&
+                cat file.txt && echo "current build number is "${BUILD_NUMBER}"" &&
+                echo "Environment says "${ENV_VAR}""
+                """
+            }
+        }
+    }
+}
