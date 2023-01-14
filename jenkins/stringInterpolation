@@ -17,6 +17,7 @@ pipeline {
                 sh """ echo 'this is to echo via sh with var content: "${myVar}"' """  //this works
                 //sh ''' echo 'this is to echo via sh with var content: "${myVar}"' '''  //this approach wont work cos it's quoted with '''
                 sh """ echo "this is to echo via sh with var content: "${myVar}"" """  //this works
+                //sh " echo "this is to echo via sh with var content: "${myVar}"" "    //this approach wont work cos sh cmds are quoted with just "
             }
         }
         stage('write echo to file') {
