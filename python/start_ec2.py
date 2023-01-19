@@ -13,7 +13,7 @@ def get_tag(tags, key='Name'):
 import boto3
 import sys
 
-instances_to_start = sys.argv[1:]
+instances_to_start = sys.argv[1:] #get args from cli, slice from index 1,
 
 ec2 = boto3.resource("ec2")
 
@@ -34,7 +34,7 @@ for region in regions:
         instance_name = get_tag(instance.tags)
         if len(instances_to_start) > 0:
             for instance_to_start in instances_to_start:
-                if instance_to_start == instance_name:
+                if instance_to_start.upper() == instance_name.upper():
                     instance.start()
                     print("The following EC2 instances is now in start state", instance.id)
         else:
