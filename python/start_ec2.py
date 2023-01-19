@@ -1,4 +1,7 @@
 import boto3
+import sys
+
+instances_to_start = sys.argv[1:]
 
 ec2 = boto3.resource("ec2")
 
@@ -16,5 +19,24 @@ for region in regions:
     instances = ec2.instances.filter(Filters=[ec2_instance])
 
     for instance in instances:
-        instance.start()
-        print("The following EC2 instances is now in start state", instance.id)
+        instance_name = get_tag(instance.tags)
+        if len(instances_to_start) > 0:
+            for instance_to_start in instances_to_start:
+                if instance_to_start == instance_name:
+                instance.start()
+                print("The following EC2 instances is now in start state", instance.id)
+        else:
+            instance.start()
+            print("The following EC2 instances is now in start state", instance.id)
+
+        
+def get_tag(tags, key='Name'):
+
+  if not tags: return ''
+
+  for tag in tags:
+  
+    if tag['Key'] == key:
+      return tag['Value']
+    
+  return ''
