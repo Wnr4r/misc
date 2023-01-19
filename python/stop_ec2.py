@@ -32,14 +32,14 @@ for region in regions:
 
     instances = ec2.instances.filter(Filters=[ec2_instance])
 
-for instance in instances:
-        instance_name = get_tag(instance.tags)
-        if len(instances_to_stop) > 0:
-            for instance_to_stop in instances_to_stop:
-                if instance_to_stop.upper() == instance_name.upper():
-                    instance.stop()
-                    print("The following EC2 instances is now in stopped state", instance.id)
-        else:
-            instance.stop()
-            print("The following EC2 instances is now in stopped state", instance.id)
+    for instance in instances:
+            instance_name = get_tag(instance.tags)
+            if len(instances_to_stop) > 0:
+                for instance_to_stop in instances_to_stop:
+                    if instance_to_stop.upper() == instance_name.upper():
+                        instance.stop()
+                        print("The following EC2 instances is now in stopped state", instance.id)
+            else:
+                instance.stop()
+                print("The following EC2 instances is now in stopped state", instance.id)
 
