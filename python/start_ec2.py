@@ -1,3 +1,15 @@
+def get_tag(tags, key='Name'):
+
+  if not tags: return ''
+
+  for tag in tags:
+  
+    if tag['Key'] == key:
+      return tag['Value']
+    
+  return ''
+
+
 import boto3
 import sys
 
@@ -30,13 +42,4 @@ for region in regions:
             print("The following EC2 instances is now in start state", instance.id)
 
         
-def get_tag(tags, key='Name'):
 
-  if not tags: return ''
-
-  for tag in tags:
-  
-    if tag['Key'] == key:
-      return tag['Value']
-    
-  return ''
