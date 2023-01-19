@@ -1,4 +1,21 @@
+def get_tag(tags, key='Name'):
+
+  if not tags: return ''
+
+  for tag in tags:
+  
+    if tag['Key'] == key:
+      return tag['Value']
+    
+  return ''
+
+
+
 import boto3
+import sys
+
+instances_to_stop = sys.argv[1:] #get args from cli, slice from index 1,
+
 
 ec2 = boto3.resource("ec2")
 
@@ -15,6 +32,14 @@ for region in regions:
 
     instances = ec2.instances.filter(Filters=[ec2_instance])
 
-    for instance in instances:
-        instance.stop()
-        print("The following EC2 instances is now in stopped state", instance.id)
+for instance in instances:
+        instance_name = get_tag(instance.tags)
+        if len(instances_to_stop) > 0:
+            for instance_to_stop in instances_to_stop:
+                if instance_to_stop.upper() == instance_name.upper():
+                    instance.stop()
+                    print("The following EC2 instances is now in stopped state", instance.id)
+        else:
+            instance.stop()
+            print("The following EC2 instances is now in stopped state", instance.id)
+
