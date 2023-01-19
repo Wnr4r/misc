@@ -23,8 +23,8 @@ for region in regions:
         if len(instances_to_start) > 0:
             for instance_to_start in instances_to_start:
                 if instance_to_start == instance_name:
-                instance.start()
-                print("The following EC2 instances is now in start state", instance.id)
+                    instance.start()
+                    print("The following EC2 instances is now in start state", instance.id)
         else:
             instance.start()
             print("The following EC2 instances is now in start state", instance.id)
