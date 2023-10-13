@@ -128,3 +128,4 @@ variable "ami_name" {
     EOT
 }
 
+
