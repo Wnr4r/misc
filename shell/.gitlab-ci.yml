@@ -12,6 +12,6 @@ variables:
   FAILOVER_SOURCE_EKS_CLUSTER: "test-cluster"
 
   # Change this Variable to True to tear down the environment. Change back to False to recreate it.
-  BRING_ENVIRONMENT_DOWN: "False"
+  BRING_ENVIRONMENT_DOWN: "True"
 
   schedule_expression: rate(1 hour)
