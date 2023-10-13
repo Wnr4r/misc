@@ -127,3 +127,5 @@ variable "ami_name" {
     The name of the AMI to use for the EKS worker nodes. This parameter eliminates the need to manually look up AMI IDs and will select the correct AMI ID for that region, based on the name.
     EOT
 }
+
+
