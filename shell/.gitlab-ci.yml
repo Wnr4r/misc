@@ -1,0 +1,17 @@
+variables:
+  secrets_prefix: eks-
+  WORKING_DIRECTORY: "${team_folder}/${tf_res}"
+  FLUX_V2_RELEASE_VERSION: "0.31.3"
+
+  # Failover Variables
+  FAILOVER: "False"
+  FAILOVER_SOURCE_REGION: "${BACKUP_REGION}"
+  FAILOVER_TARGET_REGION: "${REGION}"
+  FAILOVER_STRATEGY: "planned"
+  POSTGRES_GLOBAL_DB_ID: "lobal"
+  FAILOVER_SOURCE_EKS_CLUSTER: "test-cluster"
+
+  # Change this Variable to True to tear down the environment. Change back to False to recreate it.
+  BRING_ENVIRONMENT_DOWN: "False"
+
+  schedule_expression: rate(1 hour)
